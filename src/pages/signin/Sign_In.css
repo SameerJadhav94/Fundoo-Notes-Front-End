@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.body {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    
+}
+.Login{
+    margin-top: 20vh;
+    display: flex;
+    padding: 40px;
+    flex-direction:column;
+    flex-shrink: 0; 
+    align-items: center;
+    border: 1px solid rgba(59, 58, 58, 0.144);
+    border-radius:7px;
+    width: 25vw;
+    height: 45vh; 
+    
+}
+.img{
+    padding: 5px;
+}
+.PageName{
+    padding-bottom: 1em;
+    font-size: 24px;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+    
+
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    width: 80%;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12vw;
+}
+.forgotPassword{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+}

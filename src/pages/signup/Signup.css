@@ -1,0 +1,52 @@
+.signup{
+    margin-top: 20vh;
+    display: flex;
+    padding: 25px;
+    flex-direction:row;
+    flex-shrink: 1; 
+    align-content: center;
+    border: 1px solid rgba(59, 58, 58, 0.144);
+    border-radius:7px;
+    width: 45vw;
+    height: 60vh; 
+ 
+}
+.columnflex{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+.text{
+    font-size: 25px;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+}
+.text1{
+    font-size: 18px;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+}
+.fields{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    
+}
+#mail{
+    display: flex;
+    flex-shrink: 1;
+    width: 27em;
+}
+.helperText{
+    color: rgba(36, 36, 36, 0.671);
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+}
+.button{
+    display: flex;
+    flex-direction: row;
+    gap: 14em;
+}
+.logo{
+    display: flex;
+    overflow: hidden; 
+    flex-shrink: 1;
+}
