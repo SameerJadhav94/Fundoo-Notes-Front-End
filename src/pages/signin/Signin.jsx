@@ -2,6 +2,7 @@ import React from "react";
 import "./Sign_In.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { login } from "../../services/userServices";
 const emailRegex =
   /^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@([0-9a-zA-Z][-]?)+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 const passwordRegex =
@@ -79,6 +80,22 @@ function SignIn() {
           passwordText:
             "Password Must Not Be Less Than 8 Characters And Must Contain One Uppercase, One Lowercase and One Numeric.",
         }));
+      }
+      if (emailValidation===true && passwordValidation===true) {
+        let object ={
+          "email": email,
+         "password": password
+        }
+        console.log(object);
+        login(object).then((result)=>{
+          console.log(result.data.id);
+          console.log(result);
+          console.log(result.data.token);
+          localStorage.setItem("token", result.data.token)
+          localStorage.setItem("id",result.data.id)
+        }).catch((error) =>{
+          console.log(error);
+        })
       }
     }
   };

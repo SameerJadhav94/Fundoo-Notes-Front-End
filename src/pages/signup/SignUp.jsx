@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
+import { register } from "../../services/userServices";
 const firstNameRegex = /^[A-Z]{1}[a-z]{1,}$/;
 const lastNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const emailRegex =
@@ -28,7 +29,8 @@ function SignUp() {
     firstNameText: "Enter First Name",
     lastNameText: "Enter Last Name",
     emailText: "You can use letters, numbers & periods",
-    passwordText: "Use 8 or more characters with a mix of letters, numbers & symbols",
+    passwordText:
+      "Use 8 or more characters with a mix of letters, numbers & symbols",
   });
 
   function takeFirstName(e) {
@@ -83,17 +85,17 @@ function SignUp() {
         setRegexPattern((regexPattern) => ({
           ...regexPattern,
           firstNameBorder: false,
-        lastNameBorder: false,
-        emailBorder: false,
-        passwordBorder: false
+          lastNameBorder: false,
+          emailBorder: false,
+          passwordBorder: false,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           firstNameText: "",
           lastNameText: "",
           emailText: "",
           passwordText: "",
-        }))
+        }));
       }
 
       if (!firstNameValidation) {
@@ -101,19 +103,19 @@ function SignUp() {
           ...regexPattern,
           firstNameBorder: true,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           firstNameText: "Must have Atleast 1 Uppercase letter.",
-        }))
-      }else{
+        }));
+      } else {
         setRegexPattern((regexPattern) => ({
           ...regexPattern,
           firstNameBorder: false,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           firstNameText: "Enter First Name",
-        }))
+        }));
       }
 
       if (!lastNameValidation) {
@@ -121,20 +123,19 @@ function SignUp() {
           ...regexPattern,
           lastNameBorder: true,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           lastNameText: "Must have Atleast 1 Uppercase letter.",
-        }))
-      }
-      else{
+        }));
+      } else {
         setRegexPattern((regexPattern) => ({
           ...regexPattern,
           lastNameBorder: false,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           lastNameText: "Enter Last Name",
-        }))
+        }));
       }
 
       if (!emailValidation) {
@@ -142,20 +143,19 @@ function SignUp() {
           ...regexPattern,
           emailBorder: true,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           emailText: "Email Must Contain User Name And Domain Name.",
-        }))
-      }
-      else{
+        }));
+      } else {
         setRegexPattern((regexPattern) => ({
           ...regexPattern,
           emailBorder: false,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
           emailText: "You can use letters, numbers & periods",
-        }))
+        }));
       }
 
       if (!passwordValidation) {
@@ -163,20 +163,42 @@ function SignUp() {
           ...regexPattern,
           passwordBorder: true,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
-          passwordText: "Password Must Contain Atleast 1 Uppercase and Minimum 8 Characters.",
-        }))
-      }
-      else{
+          passwordText:
+            "Password Must Contain Atleast 1 Uppercase and Minimum 8 Characters.",
+        }));
+      } else {
         setRegexPattern((regexPattern) => ({
           ...regexPattern,
           passwordBorder: false,
         }));
-        setRegexHelperText(regexHelperText => ({
+        setRegexHelperText((regexHelperText) => ({
           ...regexHelperText,
-          passwordText: "Use 8 or more characters with a mix of letters, numbers & symbols",
-        }))
+          passwordText:
+            "Use 8 or more characters with a mix of letters, numbers & symbols",
+        }));
+      }
+      if (
+        firstNameValidation === true &&
+        lastNameValidation === true &&
+        emailValidation === true &&
+        passwordValidation === true
+      ) {
+        let object = {
+          "firstName": firstName,
+          "lastName": lastName,
+          "email": email,
+          "password": password,
+        };
+        register(object, (error, response) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(response.data);
+          }
+          console.log(object);
+        });
       }
     }
   };
@@ -194,7 +216,7 @@ function SignUp() {
           <br className="gap" />
           <div className="fields">
             <TextField
-              id="name"
+              id="firstname"
               label="First name"
               size="small"
               variant="outlined"
@@ -203,7 +225,7 @@ function SignUp() {
               error={regexPattern.firstNameBorder}
             />
             <TextField
-              id="name"
+              id="lastname"
               label="Last name"
               size="small"
               variant="outlined"
@@ -246,7 +268,9 @@ function SignUp() {
           </div>
           <div className="button">
             <Button href="#text-buttons">Sign in instead</Button>
-            <Button variant="contained" onClick = {Next}>Next</Button>
+            <Button variant="contained" onClick={Next}>
+              Next
+            </Button>
           </div>
         </div>
         <div className="logo">

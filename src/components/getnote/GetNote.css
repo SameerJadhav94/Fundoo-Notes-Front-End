@@ -1,0 +1,33 @@
+.notesContainer{
+    margin-top: 20px;
+    height: 60vh;
+    width:60vw;
+    display:flex;
+    flex-wrap:wrap;
+    position: relative;
+    left: 250px;
+    top:50px
+}
+.mountedNotes{
+    width:150px;
+    height:150px;
+    margin:30px;
+    border:1px solid rgba(44, 43, 43, 0.295);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #CCCCFF;
+}
+.titles{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+    height: 20%;
+    word-wrap: break-word;
+}
+.descriptions{
+    padding: 5px;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+    font-size: 16px;
+    height: 60%;
+    word-wrap: break-word;
+}
