@@ -1,0 +1,66 @@
+.noteContainer {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  min-height: 50px;
+  border: 1px solid rgba(44, 43, 43, 0.295);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(44, 43, 43, 0.295);
+  padding-left: 10px;
+}
+.titleContainer {
+  height:50px;
+  width: 100%;
+}
+.descriptionContainer {
+  height: 45px;
+  width: 100%;
+}
+.buttonContainer {
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.inputFields{
+    height: 100%;
+    width: 95%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+.iconHolder{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-left: 10px;
+    
+}
+.icons{
+  cursor: pointer;
+}
+.closeButton{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.closeButton1{
+    outline: none;
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+
+}
+.closeButton1:hover{
+  border-radius: 5px;
+  background:rgba(190, 189, 189, 0.295)
+
+}

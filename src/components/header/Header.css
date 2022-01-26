@@ -69,3 +69,11 @@ form {
 .space{
     margin-left: 20px
 }
+.slider{
+  cursor: pointer;
+  margin-top: 7px !important;
+  margin-left: 20px;
+}
+.img{
+  margin-left: 20px;
+}

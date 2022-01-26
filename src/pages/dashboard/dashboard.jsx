@@ -1,25 +1,59 @@
 /* eslint-disable no-sequences */
-import React from 'react';
-import Header from '../../components/header/header'
-import NoteOne from '../../components/note1/NoteOne'
-import NoteTwo from '../../components/note2/note2'
-import './../dashboard/dashboard.css'
-import GetNote from '../../components/getnote/GetNote'
+import React, { useEffect } from "react";
+import Header from "../../components/header/header";
+import Note from "../../components/note/note";
+import "./../dashboard/dashboard.css";
+import NotesViewer from "../../components/getnote/GetNote";
+import { addNote, getNote, deleteNote } from "../../services/dataServices";
+import NavBar from "../../components/sideNavBar/SideNav"
 
 function Dashboard() {
-    const [noteView, setNoteView] = React.useState(true)
-    
-    const listenToNoteOne = (data) =>{
-       setNoteView(false)
+  const [openNav,setOpenNav] =React.useState(false)
+  const [notes, setNotes] = React.useState([]);
+
+  const listenToProps = ()=>{
+    setOpenNav(!openNav);
+  }
+  
+  useEffect(() => {
+    (async () => {
+      const notes = await getNote();
+      setNotes(notes.data.data);
+    })();
+  }, []);
+
+  const onAddNote = async (data) => {
+    try {
+      const response = await addNote(data);
+      console.log(response);
+      const notes = await getNote();
+      setNotes(notes.data.data);
+      console.log({ notes: notes.data.data });
+    } catch (error) {
+      console.log({ error });
     }
-    
-    return (
-        <div>
-            <Header/>
-            <div className="notesHolder">{noteView ? <NoteOne listenToNoteOne = {listenToNoteOne}/> : <NoteTwo/>}</div>
-              <GetNote/>  
-        </div>
-    )
+  };
+
+  const onDeleteNote = async (noteId) => {
+    try {
+      const response = await deleteNote(noteId);
+      console.log(response);
+      const notes = await getNote();
+      setNotes(notes.data.data);
+      console.log({ notes: notes.data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div>
+      <Header listenToProps={listenToProps}/>
+      <NavBar  openNav={openNav}/>
+      <div className="notesHolder">{<Note onAddNote={onAddNote}/>}</div>
+      <NotesViewer notes={notes} onDeleteNote={onDeleteNote} />
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

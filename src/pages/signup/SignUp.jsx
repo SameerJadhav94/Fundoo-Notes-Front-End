@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import { register } from "../../services/userServices";
+import { useHistory } from 'react-router-dom'
 const firstNameRegex = /^[A-Z]{1}[a-z]{1,}$/;
 const lastNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const emailRegex =
@@ -13,6 +14,7 @@ const passwordRegex =
   /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
 function SignUp() {
+  let history = useHistory();
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -33,6 +35,10 @@ function SignUp() {
       "Use 8 or more characters with a mix of letters, numbers & symbols",
   });
 
+  const redirect = () =>{
+    history.push("/SignIn")
+  }
+  
   function takeFirstName(e) {
     setFirstName(e.target.value);
   }
@@ -201,6 +207,7 @@ function SignUp() {
         });
       }
     }
+    
   };
 
   return (
@@ -267,7 +274,7 @@ function SignUp() {
             />
           </div>
           <div className="button">
-            <Button href="#text-buttons">Sign in instead</Button>
+            <Button onClick={redirect}>Sign in instead</Button>
             <Button variant="contained" onClick={Next}>
               Next
             </Button>

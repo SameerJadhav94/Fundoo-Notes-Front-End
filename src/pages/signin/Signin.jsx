@@ -3,12 +3,14 @@ import "./Sign_In.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { login } from "../../services/userServices";
+import { useHistory } from 'react-router-dom'
 const emailRegex =
   /^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@([0-9a-zA-Z][-]?)+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 const passwordRegex =
   /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
 function SignIn() {
+  let history = useHistory();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [regexPattern, setRegexPattern] = React.useState({
@@ -93,6 +95,7 @@ function SignIn() {
           console.log(result.data.token);
           localStorage.setItem("token", result.data.token)
           localStorage.setItem("id",result.data.id)
+          history.push("/Dashboard")
         }).catch((error) =>{
           console.log(error);
         })
