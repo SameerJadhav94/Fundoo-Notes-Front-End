@@ -6,9 +6,11 @@ function NoteTwo(props) {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [isFocus, setIsFocus] = React.useState(false);
+
   const takeTitle = (e) => {
     setTitle(e.target.value);
   };
+  
   const takeDescription = (e) => {
     setDescription(e.target.value);
   };

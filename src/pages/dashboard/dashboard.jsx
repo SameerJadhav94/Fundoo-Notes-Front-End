@@ -4,7 +4,7 @@ import Header from "../../components/header/header";
 import Note from "../../components/note/note";
 import "./../dashboard/dashboard.css";
 import NotesViewer from "../../components/getnote/GetNote";
-import { addNote, getNote, deleteNote } from "../../services/dataServices";
+import { addNote, getNote, deleteNote, updateNote } from "../../services/dataServices";
 import NavBar from "../../components/sideNavBar/SideNav"
 
 function Dashboard() {
@@ -46,12 +46,26 @@ function Dashboard() {
     }
   };
 
+  const onUpdateNote = async (DataId,updatedData) => {
+    try{
+      console.log(DataId);
+      console.log(updatedData);
+      const response = await updateNote(DataId,updatedData);
+      console.log(response);
+      const notes = await getNote();
+      setNotes(notes.data.data);
+      console.log({ notes: notes.data.data });
+    }catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Header listenToProps={listenToProps}/>
       <NavBar  openNav={openNav}/>
       <div className="notesHolder">{<Note onAddNote={onAddNote}/>}</div>
-      <NotesViewer notes={notes} onDeleteNote={onDeleteNote} />
+      <NotesViewer notes={notes} onDeleteNote={onDeleteNote} onUpdateNote={onUpdateNote} />
     </div>
   );
 }

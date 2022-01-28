@@ -20,8 +20,8 @@ export async function deleteNote(id) {
     let response = await axios.delete(`http://localhost:3000/note/${noteId}`, config);
     return response;
 }
-export async function updateNote(id) {
+export async function updateNote(id, obj) {
     let noteId = id;
-    let response = await axios.put(`http://localhost:3000/note/${noteId}`, config);
+    let response = await axios.put(`http://localhost:3000/note/${noteId}`,obj, config);
     return response;
 }
